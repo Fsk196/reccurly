@@ -27,9 +27,13 @@ export default function SignIn() {
   const [formError, setFormError] = React.useState<string>();
 
   const isSubmitting = fetchStatus === "fetching";
+  const emailCodeFactor = signIn.supportedSecondFactors?.find(
+    (factor) => factor.strategy === "email_code",
+  );
   const needsCode =
-    signIn.status === "needs_client_trust" ||
-    signIn.status === "needs_second_factor";
+    Boolean(emailCodeFactor) &&
+    (signIn.status === "needs_client_trust" ||
+      signIn.status === "needs_second_factor");
 
   const goHome = React.useCallback(() => {
     signIn.finalize({
@@ -57,22 +61,22 @@ export default function SignIn() {
     setPasswordError(nextPasswordError);
     setFormError(undefined);
     if (nextEmailError || nextPasswordError) return;
-
     const { error } = await signIn.password({
       emailAddress: emailAddress.trim(),
       password,
     });
-
     if (error) {
       setFormError(
         getAuthErrorMessage(error, "That email or password is incorrect."),
       );
       return;
     }
-
+    const needsCodeAfterSubmit =
+      signIn.status === "needs_client_trust" ||
+      signIn.status === "needs_second_factor";
     if (signIn.status === "complete") {
       goHome();
-    } else if (needsCode) {
+    } else if (needsCodeAfterSubmit) {
       await sendEmailCode();
     } else {
       setFormError("We couldn't sign you in. Please try again.");
