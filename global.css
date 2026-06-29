@@ -251,11 +251,11 @@
   }
 
   .auth-logo-mark {
-    @apply relative size-14 items-center justify-center rounded-2xl bg-accent;
+    @apply relative size-14 items-center justify-center rounded-tr-2xl rounded-bl-2xl bg-accent;
   }
 
   .auth-logo-mark-text {
-    @apply text-2xl font-sans-extrabold text-background;
+    @apply text-5xl font-sans-extrabold text-background leading-none;
   }
 
   .auth-wordmark {
@@ -263,7 +263,7 @@
   }
 
   .auth-wordmark-sub {
-    @apply -mt-1 text-xs font-sans-semibold uppercase tracking-[1px] text-muted-foreground;
+    @apply -mt-1 text-lg font-sans-semibold uppercase tracking-[1px] text-muted-foreground;
   }
 
   .auth-title {
@@ -271,7 +271,7 @@
   }
 
   .auth-subtitle {
-    @apply mt-2 max-w-[320px] text-center text-base font-sans-medium text-muted-foreground;
+    @apply mt-2 max-w-[320px] text-center text-lg font-sans-medium text-muted-foreground;
   }
 
   .auth-card {

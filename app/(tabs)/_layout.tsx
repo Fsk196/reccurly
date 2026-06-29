@@ -1,6 +1,7 @@
 import { tabs } from "@/constants/data";
 import { clsx } from "clsx";
-import { Tabs } from "expo-router";
+import { useAuth, useSession } from "@clerk/expo";
+import { Redirect, Tabs } from "expo-router";
 import { Image, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { components, colors } from "@/constants/theme";
@@ -9,6 +10,18 @@ const tabBar = components.tabBar;
 
 const TabsLayout = () => {
   const insets = useSafeAreaInsets();
+  const { isLoaded, isSignedIn } = useAuth();
+  const { session } = useSession();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  // Keep signed-out users out, and mirror the finalize callbacks: a session
+  // with an unfinished task (e.g. choosing an org) isn't ready for the app.
+  if (!isSignedIn || session?.currentTask) {
+    return <Redirect href="/sign-in" />;
+  }
 
   const TabIcon = ({ focused, icon }: TabIconProps) => {
     return (

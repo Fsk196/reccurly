@@ -14,12 +14,11 @@ import dayjs from "dayjs";
 import ListHeading from "@/components/ListHeading";
 import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
 import SubscriptionCard from "@/components/SubscriptionCard";
-import { useState } from "react";
-
+import React from "react";
 const SafeAreaView = styled(RNSSafeAreaView);
 
 export default function Index() {
-  const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
+  const [expandedSubscriptionId, setExpandedSubscriptionId] = React.useState<
     string | null
   >(null);
 
