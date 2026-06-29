@@ -79,11 +79,11 @@
   }
 
   .home-add-icon {
-    @apply size-12;
+    @apply size-12 items-center justify-center rounded-full border border-foreground/10 p-3;
   }
 
   .home-balance-card {
-    @apply my-2.5 min-h-50 justify-between gap-5 rounded-bl-4xl rounded-tr-4xl bg-accent p-6;
+    @apply my-2.5 min-h-40 justify-between gap-5 rounded-bl-4xl rounded-tr-4xl bg-accent p-6;
   }
 
   .home-balance-label {
@@ -127,7 +127,7 @@
   }
 
   .upcoming-icon {
-    @apply size-14;
+    @apply size-14 p-3 bg-muted rounded-lg;
   }
 
   .upcoming-price {
@@ -159,7 +159,7 @@
   }
 
   .sub-icon {
-    @apply size-16 rounded-lg;
+    @apply size-16 rounded-lg p-2.5 bg-muted/50;
   }
 
   .sub-copy {
